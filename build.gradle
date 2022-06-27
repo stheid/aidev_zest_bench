@@ -1,15 +1,22 @@
 plugins {
+    id 'com.github.johnrengelman.shadow' version '6.1.0'
     id 'org.jetbrains.kotlin.jvm' version '1.6.20'
+    id 'org.ajoberstar.grgit' version '4.1.0'
 }
 
 group = 'org.example'
-version = '1.0-SNAPSHOT'
+version = "0.1-${grgit.head().abbreviatedId}"
 
 repositories {
     mavenCentral()
+    maven {
+        url "https://raw.githubusercontent.com/ornicar/lila-maven/master"
+    }
 }
 
 dependencies {
+    implementation 'edu.berkeley.cs.jqf:jqf-fuzz:1.9'
+    implementation 'edu.berkeley.cs.jqf:jqf-examples:1.7'
     implementation 'org.apache.maven:maven-model-builder:3.5.2'
     testImplementation 'org.jetbrains.kotlin:kotlin-test'
 }
@@ -24,4 +31,7 @@ compileKotlin {
 
 compileTestKotlin {
     kotlinOptions.jvmTarget = '1.8'
+}
+
+shadowJar {
 }
