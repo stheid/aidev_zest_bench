@@ -3,9 +3,9 @@ import java.io.ByteArrayInputStream
 import java.io.IOException
 
 @Suppress("unused")
-class MavenFuzzer {
+class MavenFuzzerKt {
     @Throws(Exception::class)
-    fun fuzzerTestOneInput(input: ByteArray?) {
+    fun fuzzerTestOneInput(input: ByteArray) {
         val stream = ByteArrayInputStream(input)
         val reader = DefaultModelReader()
         try {
