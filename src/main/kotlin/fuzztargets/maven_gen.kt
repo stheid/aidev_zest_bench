@@ -1,5 +1,3 @@
-package fuzztargets
-
 import edu.berkeley.cs.jqf.examples.xml.XMLDocumentUtils
 import edu.berkeley.cs.jqf.examples.xml.XmlDocumentGenerator
 import edu.berkeley.cs.jqf.fuzz.guidance.StreamBackedRandom
@@ -14,7 +12,7 @@ import java.io.IOException
 
 
 @Suppress("unused")
-class ParsePomFuzzer {
+class MavenGenFuzzer {
     @Throws(Exception::class)
     fun fuzzerTestOneInput(input: ByteArray?) {
         val `is` = ByteArrayInputStream(input)
