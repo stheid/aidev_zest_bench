@@ -21,6 +21,7 @@ dependencies {
     implementation 'org.apache.maven:maven-model-builder:3.5.2'
     implementation 'com.alibaba:fastjson:1.2.80'
     implementation 'com.google.code.gson:gson:2.8.6'
+    implementation 'com.google.javascript:closure-compiler:v20180204'
     implementation 'com.github.OWASP:json-sanitizer:master-SNAPSHOT'
     testImplementation 'org.jetbrains.kotlin:kotlin-test'
 }
