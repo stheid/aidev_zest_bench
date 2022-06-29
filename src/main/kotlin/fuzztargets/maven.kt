@@ -1,3 +1,5 @@
+package fuzztargets
+
 import org.apache.maven.model.io.DefaultModelReader
 import java.io.ByteArrayInputStream
 import java.io.IOException
