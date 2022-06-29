@@ -3,10 +3,7 @@ import edu.berkeley.cs.jqf.examples.xml.XmlDocumentGenerator
 import edu.berkeley.cs.jqf.fuzz.guidance.StreamBackedRandom
 import edu.berkeley.cs.jqf.fuzz.junit.quickcheck.FastSourceOfRandomness
 import edu.berkeley.cs.jqf.fuzz.junit.quickcheck.NonTrackingGenerationStatus
-import org.apache.maven.model.Model
 import org.apache.maven.model.io.DefaultModelReader
-import org.apache.maven.model.io.ModelReader
-import org.w3c.dom.Document
 import java.io.ByteArrayInputStream
 import java.io.IOException
 
@@ -15,17 +12,16 @@ import java.io.IOException
 object MavenGenFuzzer {
     @JvmStatic
     fun fuzzerTestOneInput(input: ByteArray?) {
-        val `is` = ByteArrayInputStream(input)
+        val stream = ByteArrayInputStream(input)
         // Generate input values
-        val randomFile = StreamBackedRandom(`is`, java.lang.Long.BYTES)
+        val randomFile = StreamBackedRandom(stream, java.lang.Long.BYTES)
         val random = FastSourceOfRandomness(randomFile)
         val genStatus = NonTrackingGenerationStatus(random)
         val gen = XmlDocumentGenerator()
-        val reader: ModelReader = DefaultModelReader()
-        val dom: Document = gen.generate(random, genStatus)
+        val dom = gen.generate(random, genStatus)
+        val reader = DefaultModelReader()
         try {
-            @Suppress("UNUSED_VARIABLE")
-            val model: Model = reader.read(XMLDocumentUtils.documentToInputStream(dom), null)
+            reader.read(XMLDocumentUtils.documentToInputStream(dom), null)
         } catch (ignore: IOException) {
         }
     }
