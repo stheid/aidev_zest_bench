@@ -18,11 +18,11 @@ repositories {
 dependencies {
     implementation 'edu.berkeley.cs.jqf:jqf-fuzz:1.9'
     implementation 'edu.berkeley.cs.jqf:jqf-examples:1.7'
-    implementation 'org.apache.maven:maven-model-builder:3.5.2'
     implementation 'com.alibaba:fastjson:1.2.80'
     implementation 'com.google.code.gson:gson:2.8.6'
     implementation 'com.google.javascript:closure-compiler:v20180204'
     implementation 'com.github.OWASP:json-sanitizer:master-SNAPSHOT'
+    implementation 'org.apache.maven:maven-model-builder:3.8.5'
     testImplementation 'org.jetbrains.kotlin:kotlin-test'
 }
 
