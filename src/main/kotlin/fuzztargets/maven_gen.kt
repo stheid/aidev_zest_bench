@@ -12,8 +12,8 @@ import java.io.IOException
 
 
 @Suppress("unused")
-class MavenGenFuzzer {
-    @Throws(Exception::class)
+object MavenGenFuzzer {
+    @JvmStatic
     fun fuzzerTestOneInput(input: ByteArray?) {
         val `is` = ByteArrayInputStream(input)
         // Generate input values
