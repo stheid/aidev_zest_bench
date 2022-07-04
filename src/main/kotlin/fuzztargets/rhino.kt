@@ -1,16 +1,15 @@
 import org.mozilla.javascript.Context
 import org.mozilla.javascript.EvaluatorException
-import java.io.ByteArrayInputStream
-import java.io.InputStreamReader
 
-object RhinoFuzzer{
-
+object RhinoFuzzer {
     @JvmStatic
-    fun fuzzerTestOneInput(input: ByteArray) {
+    fun fuzzerTestOneInput(input: ByteArray) =
+        compile(String(input))
+
+    fun compile(input: String) {
         val context = Context.enter()
-        val `in` = ByteArrayInputStream(input)
         try {
-            context.compileReader(InputStreamReader(`in`), "input", 0, null)
+            context.compileString(input, "input", 0, null)
         } catch (ignore: EvaluatorException) {
         }
         Context.exit()
