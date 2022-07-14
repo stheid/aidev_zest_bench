@@ -11,12 +11,10 @@ import java.nio.ByteBuffer
 import java.util.*
 
 class GeometricDistributionTest {
-    val seed = byteArrayOf(0, 0, 0, 0, 0, 0, 0, 0)
-
     @Test
     fun testSampleWithMeanOne() {
-        val stream = ByteArrayInputStream(seed + byteArrayOf(0, 0, 0, 0, 0, 0, 0, 1))
-        val randomFile = StreamBackedRandom(stream)
+        val stream = ByteArrayInputStream(byteArrayOf(0, 0, 0, 0, 0, 0, 0, 1))
+        val randomFile = StreamBackedRandom(stream, java.lang.Long.BYTES)
         val random = FastSourceOfRandomness(randomFile)
         val dist = GeometricDistribution()
         assert(1 == dist.sampleWithMean(10.0, random))
@@ -24,8 +22,8 @@ class GeometricDistributionTest {
 
     @Test
     fun testSampleWithMeanTwo() {
-        val stream = ByteArrayInputStream(seed + byteArrayOf(31, -75, -73, -128, -102, 100, -80, 63))
-        val randomFile = StreamBackedRandom(stream)
+        val stream = ByteArrayInputStream(byteArrayOf(31, -75, -73, -128, -102, 100, -80, 63))
+        val randomFile = StreamBackedRandom(stream, java.lang.Long.BYTES)
         val random = FastSourceOfRandomness(randomFile)
         val dist = GeometricDistribution()
         assert(2 == dist.sampleWithMean(10.0, random))
@@ -47,7 +45,7 @@ class GeometricDistributionTest {
         val bytes = ByteArray(8)
         while (result != goal) {
             ByteBuffer.wrap(bytes).putLong(Random().nextLong())
-            val stream = ByteArrayInputStream(seed + bytes)
+            val stream = ByteArrayInputStream(bytes)
             val randomFile = StreamBackedRandom(stream)
             val random = FastSourceOfRandomness(randomFile)
             val dist = GeometricDistribution()
