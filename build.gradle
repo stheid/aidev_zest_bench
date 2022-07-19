@@ -22,7 +22,7 @@ dependencies {
     implementation 'com.google.code.gson:gson:2.8.6'
     implementation 'com.google.javascript:closure-compiler:v20180204'
     implementation 'com.github.OWASP:json-sanitizer:master-SNAPSHOT'
-    implementation 'org.apache.maven:maven-model-builder:3.8.5'
+    implementation 'org.apache.maven:maven-model-builder:3.5.2'
     implementation 'org.mozilla:rhino:1.7.8'
     implementation 'org.apache.ant:ant:1.10.2'
     testImplementation 'org.jetbrains.kotlin:kotlin-test'

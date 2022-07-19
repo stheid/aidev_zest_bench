@@ -10,9 +10,9 @@ import edu.berkeley.cs.jqf.fuzz.junit.quickcheck.NonTrackingGenerationStatus
 
 fun <T> generate(input: ByteArray, generator: Gen<T>): T {
     // Generate input values
-    val `is` = PaddedByteArrayInputStream(input)
-    val randomFile = StreamBackedRandom(`is`, java.lang.Long.BYTES)
-    val random: SourceOfRandomness = FastSourceOfRandomness(randomFile)
-    val genStatus: GenerationStatus = NonTrackingGenerationStatus(random)
+    val stream = PaddedByteArrayInputStream(input)
+    val randomFile = StreamBackedRandom(stream, java.lang.Long.BYTES)
+    val random = FastSourceOfRandomness(randomFile)
+    val genStatus = NonTrackingGenerationStatus(random)
     return generator.generate(random, genStatus)
 }
