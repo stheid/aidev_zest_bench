@@ -10,7 +10,9 @@ version = "0.1-${grgit.head().abbreviatedId}"
 repositories {
     mavenCentral()
     maven {
+        // needed to resolve scalachess, which is a dep of jqf-examples
         url "https://raw.githubusercontent.com/ornicar/lila-maven/master"
+        allowInsecureProtocol = true
     }
     maven { url "https://jitpack.io" }
 }
@@ -21,10 +23,10 @@ dependencies {
     implementation 'com.alibaba:fastjson:1.2.80'
     implementation 'com.google.code.gson:gson:2.8.6'
     implementation 'com.google.javascript:closure-compiler:v20180204'
-    implementation 'com.github.OWASP:json-sanitizer:master-SNAPSHOT'
     implementation 'org.apache.maven:maven-model-builder:3.5.2'
     implementation 'org.mozilla:rhino:1.7.8'
     implementation 'org.apache.ant:ant:1.10.2'
+    implementation 'com.github.OWASP:json-sanitizer:master-SNAPSHOT'
     testImplementation 'org.jetbrains.kotlin:kotlin-test'
 }
 
