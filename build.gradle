@@ -11,7 +11,7 @@ repositories {
     mavenCentral()
     maven {
         // needed to resolve scalachess, which is a dep of jqf-examples
-        url "https://raw.githubusercontent.com/ornicar/lila-maven/master"
+        url "http://raw.githubusercontent.com/ornicar/lila-maven/master"
         allowInsecureProtocol = true
     }
     maven { url "https://jitpack.io" }
