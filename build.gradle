@@ -11,6 +11,8 @@ repositories {
     mavenCentral()
     maven {
         // needed to resolve scalachess, which is a dep of jqf-examples
+        // we disable ssl, because it sometimes fails in docker
+        // this is not a security issue, as this transitive dep is unused anyway.
         url "http://raw.githubusercontent.com/ornicar/lila-maven/master"
         allowInsecureProtocol = true
     }

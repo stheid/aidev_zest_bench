@@ -1,7 +1,10 @@
+import org.apache.tools.ant.BuildException
 import org.apache.tools.ant.Project
 import org.apache.tools.ant.helper.ProjectHelperImpl
+import org.junit.Assume
 import java.io.ByteArrayInputStream
 import java.io.File
+import java.io.IOException
 import java.io.InputStream
 import java.nio.file.Files
 
@@ -29,8 +32,10 @@ object AntFuzzer {
             buildXml = serializeInputStream(stream)
             val p = ProjectHelperImpl()
             p.parse(Project(), buildXml)
-        } catch (ignore: Exception) {
-
+        } catch (e: IOException) {
+            throw RuntimeException(e);
+        } catch (e: BuildException) {
+            Assume.assumeNoException(e);
         }finally {
             buildXml?.delete()
         }
