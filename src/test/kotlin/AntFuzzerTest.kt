@@ -6,11 +6,10 @@ class AntFuzzerTest {
     fun `Input B from Zest paper should throw IllegalStateException`() {
         assertThrows<IllegalStateException> {
             AntFuzzer.fuzzerTestOneInput(
-                """<?xml version="1.0"?>
-<project name="Hello" default="info">
-    <augment>
-    <target name="info">
-</project>""".toByteArray()
+                """<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+                <project default="info" name="hello">
+                <augment/> <target name="info"/>
+                </project>""".toByteArray()
             )
         }
     }

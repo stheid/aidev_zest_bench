@@ -1,22 +1,24 @@
+import edu.berkeley.cs.jqf.examples.common.Dictionary
 import edu.berkeley.cs.jqf.examples.xml.XMLDocumentUtils
 import edu.berkeley.cs.jqf.examples.xml.XmlDocumentGenerator
 import org.junit.jupiter.api.Test
 import util.generate
 
 class XMLDocumentGenTest {
-// Current:
-//    <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-//      <project default="info" name="hello">
-//          <augment/>
-//          <target name="info"/>
-//      </project>
-// Target:
-//    <?xml version="1.0"?>
-//      <project name="Hello" default="info">
-//          <augment> <target name="info">
-//      </project>
+
     @Test
-    fun test_xmlgenerator() {
+    fun test_xmlgenerator_issue127() {
+        // Current:
+        //    <?xml version="1.0" encoding="UTF-8" standalone="no"?>
+        //      <project default="info" name="hello">
+        //          <augment/>
+        //          <target name="info"/>
+        //      </project>
+        // Target:
+        //    <?xml version="1.0"?>
+        //      <project name="Hello" default="info">
+        //          <augment> <target name="info">
+        //      </project>
 
         // booleans
         val boolean_true = byteArrayOf(1)
@@ -50,10 +52,21 @@ class XMLDocumentGenTest {
                 name_arr + hello_arr +
                 boolean_true + three_from4Geometric +
                 augment_arr + one_from2Geometric + boolean_false + boolean_false + boolean_false +
-                target_arr + two_from2Geometric + name_arr + info_arr
+                target_arr + two_from2Geometric + name_arr + info_arr + boolean_false + boolean_false + boolean_false
 
-        val doc = generate(input_array, XmlDocumentGenerator(), true)
+        val doc = generate(input_array, XmlDocumentGenerator(), false)
         val string = XMLDocumentUtils.documentToString(doc)
         println(string)
+    }
+
+    @Test
+    fun test_xml2(){
+            // makeString uses AlphaStringGenerator's generate function, so same as AlphaStringGenTest.kt
+            val input_array = byteArrayOf(0)
+            val gen= XmlDocumentGenerator()
+            gen.configure(Dictionary("dict/ant.dict"))
+            val doc = generate(input_array, gen, true)
+            val string = XMLDocumentUtils.documentToString(doc)
+            println(string)
     }
 }
