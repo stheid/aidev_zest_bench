@@ -60,13 +60,44 @@ class XMLDocumentGenTest {
     }
 
     @Test
-    fun test_xml2(){
-            // makeString uses AlphaStringGenerator's generate function, so same as AlphaStringGenTest.kt
-            val input_array = byteArrayOf(0)
-            val gen= XmlDocumentGenerator()
-            gen.configure(Dictionary("dict/ant.dict"))
-            val doc = generate(input_array, gen, true)
-            val string = XMLDocumentUtils.documentToString(doc)
-            println(string)
+    fun test_ant_gen(){
+
+        // booleans
+        val boolean_true = byteArrayOf(1)
+        val boolean_false = byteArrayOf(0)
+
+        // mean 2.0
+        val one_from2Geometric = byteArrayOf(26, 125, 19, 88, 72, -28, -17, -12)
+        val two_from2Geometric = byteArrayOf(-68, 68, -72, 102, -100, -7, -60, -63)
+        val three_from2Geometric = byteArrayOf(-20, 70, 29, 7, -20, -128, -90, -105)
+
+        // Mean 4.0
+        val three_from4Geometric = byteArrayOf(-65, 40, 76, 34, 59, -12, 71, -45)
+
+        // attributes
+        val project_int = byteArrayOf(0, 0, 0, 9)
+        val default_int = byteArrayOf(0, 0, 0, 1)
+        val info_str = byteArrayOf(0, 0, 0, 52)
+        val name_int = byteArrayOf(0, 0, 0, 7)
+        val hello_str = byteArrayOf(0, 0, 0, 52)
+
+        // children
+        val augment_arr = byteArrayOf(0, 0, 0, 19)
+        val target_arr = byteArrayOf(0, 0, 0, 11)
+
+
+        val input_array = project_int + three_from2Geometric +
+                default_int + info_str +
+                name_int + hello_str +
+                boolean_true + three_from4Geometric +
+                augment_arr + one_from2Geometric + boolean_false + boolean_false + boolean_false +
+                target_arr + two_from2Geometric + name_int + info_str + boolean_false + boolean_false + boolean_false
+
+
+        val gen= XmlDocumentGenerator()
+        gen.configure(Dictionary("dict/ant.dict"))
+        val doc = generate(input_array, gen, false)
+        val string = XMLDocumentUtils.documentToString(doc)
+        println(string)
     }
 }
