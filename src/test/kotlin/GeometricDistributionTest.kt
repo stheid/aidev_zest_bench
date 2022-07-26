@@ -51,4 +51,29 @@ class GeometricDistributionTest {
         println(bytes.toList().joinToString(prefix = "byteArrayOf(", postfix = ")"))
         assert(goal == result)
     }
+
+    fun testFindSampleWithMeanWithParam(MEAN: Double = 10.0, goal: Int = 6): Pair<ByteArray, Int> {
+        var result = 0
+        var bytes = byteArrayOf()
+        while (result != goal) {
+            bytes = Random.Default.nextBytes(8)
+            val stream = PaddedByteArrayInputStream(bytes)
+            val randomFile = StreamBackedRandom(stream, java.lang.Long.BYTES)
+            val random = FastSourceOfRandomness(randomFile)
+            val dist = GeometricDistribution()
+            result = dist.sampleWithMean(MEAN, random)
+        }
+        println(bytes.toList().joinToString(prefix = "byteArrayOf(", postfix = ")"))
+
+        return Pair(bytes, result)
+    }
+    @Test
+    fun testFindByteArraySampleMean(){
+        var mean = 10.0
+        var goal = 3
+        val (bytes, weight) = testFindSampleWithMeanWithParam(mean, goal)
+        val newArrayNum = bytes.map { it + 128 }.toTypedArray()
+        println(newArrayNum.toList().joinToString(prefix = "byteArrayOf(", postfix = ")"))
+
+    }
 }
