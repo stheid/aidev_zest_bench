@@ -1,3 +1,5 @@
+package util
+
 import com.pholser.junit.quickcheck.internal.GeometricDistribution
 import edu.berkeley.cs.jqf.fuzz.guidance.StreamBackedRandom
 import edu.berkeley.cs.jqf.fuzz.junit.quickcheck.FastSourceOfRandomness

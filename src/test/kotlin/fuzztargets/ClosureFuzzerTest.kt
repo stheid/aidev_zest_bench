@@ -1,3 +1,6 @@
+package fuzztargets
+
+import ClosureFuzzer
 import org.junit.jupiter.api.assertThrows
 import org.junit.jupiter.api.Test
 

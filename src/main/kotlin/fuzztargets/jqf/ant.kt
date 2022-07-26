@@ -10,23 +10,20 @@ import java.nio.file.Files
 
 @Suppress("unused")
 object AntFuzzer {
-    private fun serializeInputStream(`in`: InputStream): File {
-        val path = Files.createTempFile("build", ".xml")
-        Files.newBufferedWriter(path).use { out ->
-            var b: Int
-            while (`in`.read().also { b = it } != -1) {
-                out.write(b)
-            }
+    private fun serializeInputStream(stream: InputStream): File {
+        val f = Files.createTempFile("build", ".xml").toFile()
+        stream.use { input ->
+            f.outputStream().use(input::copyTo)
         }
-        return path.toFile()
+        return f
     }
 
     @JvmStatic
-    fun fuzzerTestOneInput(input: ByteArray){
+    fun fuzzerTestOneInput(input: ByteArray) {
         serialize(ByteArrayInputStream(input))
     }
 
-    fun serialize(stream: InputStream){
+    fun serialize(stream: InputStream) {
         var buildXml: File? = null
         try {
             buildXml = serializeInputStream(stream)
@@ -36,7 +33,7 @@ object AntFuzzer {
             throw RuntimeException(e);
         } catch (e: BuildException) {
             Assume.assumeNoException(e);
-        }finally {
+        } finally {
             buildXml?.delete()
         }
     }

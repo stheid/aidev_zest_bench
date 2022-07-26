@@ -1,3 +1,5 @@
+package generator_reverse_engineering
+
 import edu.berkeley.cs.jqf.examples.common.Dictionary
 import edu.berkeley.cs.jqf.examples.xml.XMLDocumentUtils
 import edu.berkeley.cs.jqf.examples.xml.XmlDocumentGenerator
@@ -46,7 +48,7 @@ class XMLDocumentGenTest {
         val name_arr = four_from10Geometric + byteArrayOf(13, 0, 12, 4)
         val info_arr = four_from10Geometric + byteArrayOf(8, 13, 5, 14)
 
-        // makeString uses AlphaStringGenerator's generate function, so same as AlphaStringGenTest.kt
+        // makeString uses AlphaStringGenerator's generate function, so same as generator_reverse_engineering.AlphaStringGenTest.kt
         val input_array = project_arr + three_from2Geometric +
                 default_arr + info_arr +
                 name_arr + hello_arr +

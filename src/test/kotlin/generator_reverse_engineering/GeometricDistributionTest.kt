@@ -1,3 +1,5 @@
+package generator_reverse_engineering
+
 import com.pholser.junit.quickcheck.internal.GeometricDistribution
 import edu.berkeley.cs.jqf.fuzz.guidance.StreamBackedRandom
 import edu.berkeley.cs.jqf.fuzz.junit.quickcheck.FastSourceOfRandomness
@@ -36,8 +38,8 @@ class GeometricDistributionTest {
 
     @Test
     fun testFindSampleWithMean() {
-        val MEAN = 10.0
-        val goal = 6
+        val MEAN = 4.0
+        val goal = 2
         var result = 0
         var bytes = byteArrayOf()
         while (result != goal) {

@@ -1,3 +1,5 @@
+package generator_reverse_engineering
+
 import edu.berkeley.cs.jqf.examples.common.AlphaStringGenerator
 import org.junit.jupiter.api.Test
 import util.generate
