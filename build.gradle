@@ -9,13 +9,6 @@ version = "0.1-${grgit.head().abbreviatedId}"
 
 repositories {
     mavenCentral()
-    maven {
-        // needed to resolve scalachess, which is a dep of jqf-examples
-        // we disable ssl, because it sometimes fails in docker
-        // this is not a security issue, as this transitive dep is unused anyway.
-        url "http://raw.githubusercontent.com/ornicar/lila-maven/master"
-        allowInsecureProtocol = true
-    }
     maven { url "https://jitpack.io" }
 }
 
@@ -30,6 +23,13 @@ dependencies {
     implementation 'org.apache.ant:ant:1.10.2'
     implementation 'com.github.OWASP:json-sanitizer:master-SNAPSHOT'
     testImplementation 'org.jetbrains.kotlin:kotlin-test'
+}
+
+configurations {
+    // needed to resolve scalachess, which is a dep of jqf-examples
+    // we disable ssl, because it sometimes fails in docker
+    // this is not a security issue, as this transitive dep is unused anyway.
+    implementation.exclude group: "org.lichess", module: "scalachess_2.12"
 }
 
 test {
