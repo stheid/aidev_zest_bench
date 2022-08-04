@@ -1,6 +1,5 @@
 package fuzztargets
 
-import edu.berkeley.cs.jqf.examples.common.Dictionary
 import edu.berkeley.cs.jqf.examples.xml.XMLDocumentUtils
 import edu.berkeley.cs.jqf.examples.xml.XmlDocumentGenerator
 import edu.berkeley.cs.jqf.fuzz.guidance.StreamBackedRandom
@@ -14,7 +13,7 @@ import java.lang.Long
 import java.nio.file.Files
 import java.nio.file.Paths
 
-class AntGenFuzzerTest {
+class XmlGenFuzzerTest {
     @Test
     fun `Input C from Zest paper should throw NullPointerException`() {
         val folderName = "src/main/resources/generated_inputs"
