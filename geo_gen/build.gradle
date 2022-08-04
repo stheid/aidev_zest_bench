@@ -1,0 +1,23 @@
+plugins {
+    id 'com.github.johnrengelman.shadow'
+    id 'org.ajoberstar.grgit'
+    id 'org.jetbrains.kotlin.jvm'
+}
+
+group 'org.example'
+version '0.1-452c791'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'edu.berkeley.cs.jqf:jqf-fuzz:1.9'
+    implementation 'com.github.ajalt.clikt:clikt:3.4.0'
+}
+
+shadowJar {
+    manifest {
+        attributes 'Main-Class': 'GeoGenKt'
+    }
+}

@@ -1,3 +1,4 @@
 
 rootProject.name = 'aidev_zest_bench'
+include 'geo_gen'
 
