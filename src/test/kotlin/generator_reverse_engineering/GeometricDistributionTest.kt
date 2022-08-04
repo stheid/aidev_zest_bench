@@ -6,6 +6,7 @@ import edu.berkeley.cs.jqf.fuzz.junit.quickcheck.FastSourceOfRandomness
 import org.junit.jupiter.api.Test
 import util.PaddedByteArrayInputStream
 import java.io.ByteArrayInputStream
+import java.io.File
 import kotlin.random.Random
 
 class GeometricDistributionTest {
@@ -38,8 +39,8 @@ class GeometricDistributionTest {
 
     @Test
     fun testFindSampleWithMean() {
-        val MEAN = 4.0
-        val goal = 2
+        val MEAN = 2.0
+        val goal = 1
         var result = 0
         var bytes = byteArrayOf()
         while (result != goal) {
@@ -54,7 +55,7 @@ class GeometricDistributionTest {
         assert(goal == result)
     }
 
-    fun testFindSampleWithMeanWithParam(MEAN: Double = 10.0, goal: Int = 6): Pair<ByteArray, Int> {
+    private fun findSampleWithMean_WithParam(MEAN: Double = 10.0, goal: Int = 6): Pair<ByteArray, Int> {
         var result = 0
         var bytes = byteArrayOf()
         while (result != goal) {
@@ -65,17 +66,27 @@ class GeometricDistributionTest {
             val dist = GeometricDistribution()
             result = dist.sampleWithMean(MEAN, random)
         }
-        println(bytes.toList().joinToString(prefix = "byteArrayOf(", postfix = ")"))
+//        println(bytes.toList().joinToString(prefix = "byteArrayOf(", postfix = ")"))
 
         return Pair(bytes, result)
     }
     @Test
     fun testFindByteArraySampleMean(){
-        var mean = 10.0
-        var goal = 3
-        val (bytes, weight) = testFindSampleWithMeanWithParam(mean, goal)
-        val newArrayNum = bytes.map { it + 128 }.toTypedArray()
-        println(newArrayNum.toList().joinToString(prefix = "byteArrayOf(", postfix = ")"))
-
+        val mean:List<Double> = listOf(2.0, 4.0, 10.0)
+        val result: MutableList<String> = mutableListOf()
+        for(x in mean){
+            for(i in 1..2*x.toInt()){
+                val (bytes, weight) = findSampleWithMean_WithParam(x, i)
+                val newArrayNum = bytes.map { it }.toTypedArray()
+                println("_"+ i + "_from" +x.toInt()+ "Geo split "+ newArrayNum.toList().joinToString(prefix = "byteArrayOf(", postfix = ")"))
+                result.add("_"+ i + "_from" +x.toInt()+ "Geo split "+ newArrayNum.toList().joinToString(prefix = "byteArrayOf(", postfix = ")"))
+            }
+        }
+        // export data to be used in python
+        File("src/main/resources/goal_from_mean_geo.txt").printWriter().use { out ->
+            for(x in result){
+                out.println(x)
+            }
+        }
     }
 }
