@@ -1,12 +1,8 @@
-import com.pholser.junit.quickcheck.generator.GenerationStatus
 import com.pholser.junit.quickcheck.internal.GeometricDistribution
-import com.pholser.junit.quickcheck.random.SourceOfRandomness
 import edu.berkeley.cs.jqf.fuzz.guidance.StreamBackedRandom
 import edu.berkeley.cs.jqf.fuzz.junit.quickcheck.FastSourceOfRandomness
-import edu.berkeley.cs.jqf.fuzz.junit.quickcheck.NonTrackingGenerationStatus
 import org.junit.jupiter.api.Test
 import java.io.ByteArrayInputStream
-import java.io.InputStream
 import java.nio.ByteBuffer
 import java.util.*
 
@@ -21,6 +17,7 @@ class GeometricDistributionTest {
         val dist = GeometricDistribution()
         assert(1 == dist.sampleWithMean(10.0, random))
     }
+
     @Test
     fun testSampleWithMeanTwo() {
         val stream = ByteArrayInputStream(seed + byteArrayOf(31, -75, -73, -128, -102, 100, -80, 63))
