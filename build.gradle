@@ -35,6 +35,9 @@ dependencies {
 test {
     useJUnitPlatform()
 }
+java {
+    toolchain.languageVersion.set(JavaLanguageVersion.of(11))
+}
 
 compileKotlin {
     kotlinOptions.jvmTarget = '11'
