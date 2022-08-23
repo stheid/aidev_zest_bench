@@ -23,6 +23,18 @@ configurations {
     implementation.exclude group: "org.lichess", module: "scalachess_2.12"
 }
 
+java {
+    toolchain.languageVersion.set(JavaLanguageVersion.of(11))
+}
+
+compileKotlin {
+    kotlinOptions.jvmTarget = '11'
+}
+
+compileTestKotlin {
+    kotlinOptions.jvmTarget = '11'
+}
+
 shadowJar{
 
 }
