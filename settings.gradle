@@ -1,3 +1,5 @@
 
 rootProject.name = 'aidev_zest_bench'
+includeBuild 'fuzztargets'
+include 'geo_gen'
 

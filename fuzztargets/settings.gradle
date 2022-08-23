@@ -1,0 +1,10 @@
+rootProject.name = 'fuzztargets'
+include 'simple'
+
+include 'ant'
+include 'maven'
+
+include 'rhino'
+include 'closure'
+
+include 'util'

@@ -7,7 +7,7 @@ import util.PaddedByteArrayInputStream
 class PaddedByteArrayInputStreamTest {
     @Test
     fun testPaddedByteStream() {
-        val stream = PaddedByteArrayInputStream(byteArrayOf(1,2,3,4))
+        val stream = PaddedByteArrayInputStream(byteArrayOf(1, 2, 3, 4))
         val randomFile = StreamBackedRandom(stream)
         val random = FastSourceOfRandomness(randomFile)
         val dist = GeometricDistribution()
