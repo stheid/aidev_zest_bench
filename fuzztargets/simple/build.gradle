@@ -1,0 +1,21 @@
+plugins {
+    id 'java'
+}
+
+version '0.1-9ea432c'
+
+repositories {
+    mavenCentral()
+    maven { url "https://jitpack.io" }
+}
+
+dependencies {
+
+    implementation 'com.google.code.gson:gson:2.8.6'
+    implementation 'com.alibaba:fastjson:1.2.80'
+    implementation 'com.github.OWASP:json-sanitizer:master-SNAPSHOT'
+}
+
+test {
+    useJUnitPlatform()
+}
