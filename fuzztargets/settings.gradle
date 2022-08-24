@@ -3,6 +3,7 @@ include 'simple'
 
 include 'ant'
 include 'maven'
+include 'maven_gen'
 
 include 'rhino'
 include 'closure'

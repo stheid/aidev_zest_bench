@@ -1,5 +1,4 @@
 import org.apache.maven.model.io.DefaultModelReader
-import org.junit.Assume
 import java.io.ByteArrayInputStream
 import java.io.InputStream
 import java.io.IOException
@@ -16,7 +15,7 @@ object MavenFuzzer {
         try {
             reader.read(stream, null)
         } catch (e: IOException) {
-            Assume.assumeNoException(e);
+            //Ignored;
         }
     }
 }
