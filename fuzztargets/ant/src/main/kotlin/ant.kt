@@ -1,7 +1,6 @@
 import org.apache.tools.ant.BuildException
 import org.apache.tools.ant.Project
 import org.apache.tools.ant.helper.ProjectHelperImpl
-import org.junit.Assume
 import java.io.ByteArrayInputStream
 import java.io.File
 import java.io.IOException
@@ -35,7 +34,7 @@ object AntFuzzer {
         } catch (e: IOException) {
             throw RuntimeException(e);
         } catch (e: BuildException) {
-            Assume.assumeNoException(e);
+            //Ignored.
         }finally {
             buildXml?.delete()
         }
