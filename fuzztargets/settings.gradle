@@ -2,10 +2,13 @@ rootProject.name = 'fuzztargets'
 include 'simple'
 
 include 'ant'
+include 'ant_gen'
 include 'maven'
 include 'maven_gen'
 
 include 'rhino'
+include 'rhino_gen'
 include 'closure'
+include 'closure_gen'
 
 include 'util'
