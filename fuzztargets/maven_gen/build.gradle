@@ -11,7 +11,6 @@ repositories {
 }
 
 dependencies {
-    implementation 'org.apache.maven:maven-model-builder:3.5.2'
     implementation project(':util')
     implementation project(':maven')
     testImplementation 'org.jetbrains.kotlin:kotlin-test'
