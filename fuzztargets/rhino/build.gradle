@@ -12,15 +12,6 @@ repositories {
 
 dependencies {
     implementation 'org.mozilla:rhino:1.7.8'
-    implementation project(':util')
-    testImplementation 'org.jetbrains.kotlin:kotlin-test'
-}
-
-configurations {
-    // needed to resolve scalachess, which is a dep of jqf-examples
-    // we disable ssl, because it sometimes fails in docker
-    // this is not a security issue, as this transitive dep is unused anyway.
-    implementation.exclude group: "org.lichess", module: "scalachess_2.12"
 }
 
 java {

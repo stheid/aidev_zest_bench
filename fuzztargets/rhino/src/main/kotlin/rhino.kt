@@ -1,4 +1,3 @@
-import org.junit.Assume
 import org.mozilla.javascript.Context
 import org.mozilla.javascript.EvaluatorException
 
@@ -12,7 +11,7 @@ object RhinoFuzzer {
         try {
             context.compileString(input, "input", 0, null)
         } catch (e: EvaluatorException) {
-            Assume.assumeNoException(e);
+            //Ignored.
         }
         Context.exit()
     }
