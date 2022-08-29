@@ -2,7 +2,6 @@ import com.google.javascript.jscomp.CompilationLevel
 import com.google.javascript.jscomp.Compiler
 import com.google.javascript.jscomp.CompilerOptions
 import com.google.javascript.jscomp.SourceFile
-import org.junit.Assume
 import java.io.ByteArrayOutputStream
 import java.io.PrintStream
 
@@ -23,6 +22,7 @@ object ClosureFuzzer {
 
         val src = SourceFile.fromCode("input", input)
         val result = compiler.compile(externs, src, options)
-        Assume.assumeTrue(result.success)
+        // Is this useful?
+        //Assume.assumeTrue(result.success)
     }
 }
