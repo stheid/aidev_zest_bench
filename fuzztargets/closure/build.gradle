@@ -12,6 +12,11 @@ repositories {
 
 dependencies {
     implementation 'com.google.javascript:closure-compiler:v20180204'
+    testImplementation 'org.jetbrains.kotlin:kotlin-test'
+}
+
+test {
+    useJUnitPlatform()
 }
 
 shadowJar{
